@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  images: {
+    domains: ["cdn.discordapp.com", "media.discordapp.net"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

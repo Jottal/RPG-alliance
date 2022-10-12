@@ -3,12 +3,14 @@ import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
+import SessionAuth from "../shared/SessionAuth";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
       <Head>
-        <title>Alliance</title>
+        <title>Dashboard - Central</title>
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
@@ -20,15 +22,17 @@ function MyApp({ Component, pageProps }: AppProps) {
         withNormalizeCSS
         theme={{
           /** Put your mantine theme override here */
-          colorScheme: "light",
+          colorScheme: "dark",
         }}
       >
         <SessionProvider session={pageProps.session}>
-          <Component {...pageProps} />
+          <SessionAuth>
+            <Component {...pageProps} />
+          </SessionAuth>
         </SessionProvider>
       </MantineProvider>
     </>
   );
-}
+};
 
 export default MyApp;
