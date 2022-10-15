@@ -98,8 +98,10 @@ const data = [
 
 const NavbarSimpleColored = () => {
   const { classes, cx } = useStyles();
-  const [active, setActive] = useState("Dashboard");
   const router = useRouter();
+  const [active, setActive] = useState(
+    data.find((c) => c.link === router.pathname)?.label
+  );
   const { data: session } = useSession();
 
   const links = data.map((item) => (

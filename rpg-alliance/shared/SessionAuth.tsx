@@ -1,6 +1,5 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import { AppShell } from "@mantine/core";
 import CustomNavBar from "./layout/CustomNavBar";
 import styled from "styled-components";
@@ -11,18 +10,15 @@ interface Props {
 }
 
 const SessionAuth = ({ children }: Props) => {
-  const { data: session, status } = useSession();
   const router = useRouter();
-
-  useEffect(() => {
-    if (
-      !session &&
-      status === "unauthenticated" &&
-      router.pathname !== "/login"
-    ) {
-      router.push("/login");
-    }
-  }, [router, session, status]);
+  const { data: session, status } = useSession({
+    required: true,
+    onUnauthenticated() {
+      if (router.pathname !== "/login") {
+        router.push("/login");
+      }
+    },
+  });
 
   return (
     <>

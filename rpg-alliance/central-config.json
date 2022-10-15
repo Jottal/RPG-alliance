@@ -1,0 +1,15 @@
+{
+  "discordAPI": {
+    "baseURL": "https://discord.com/api/",
+    "version": "v10"
+  },
+  "centralAPI": {
+    "baseURL": "http://localhost:3000/"
+  },
+  "central": {
+    "id": "558408423943700510",
+    "roles": {
+      "master": "585242040271503471"
+    }
+  }
+}
